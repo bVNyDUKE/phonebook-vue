@@ -10,23 +10,15 @@
             <div class='meta'>
                 {{ contact.number }}
             </div>
-            <!-- <div class='extra content'>
-                <span class='right floated edit icon' v-on:click="toggleForm(contact)">
-                    <i class='edit icon'></i>
-                </span>
-                <span class='right floated trash icon' v-on:click="deleteEntry(contact)">
-                    <i class='trash icon'></i>
-                </span>
-            </div> -->
             <div class='extra content'>
-            <div class="ui small basic icon buttons attached">
-                <button class="ui basic button" @click="toggleForm(contact)">
-                    <i class="edit icon"></i>
-                </button>
-                <button class="ui basic button" @click="deleteEntry(contact)">
-                    <i class="trash icon"></i>
-                </button>
-            </div>
+                <div class="ui small basic icon buttons attached">
+                    <button class="ui basic button" @click="toggleForm(contact)">
+                        <i class="edit icon"></i>
+                    </button>
+                    <button class="ui basic button" @click="deleteEntry(contact)">
+                        <i class="trash icon"></i>
+                    </button>
+                </div>
             </div>
         </div>
         <!-- form for editing !-->
