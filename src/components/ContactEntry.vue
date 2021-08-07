@@ -22,17 +22,17 @@
         <!-- form for editing !-->
         <div class='content' v-show='isEditing'>
             <div class='ui form'>
-                <div class='field'>
+                <div class='field' :class="{error: this.error.indexOf('firstName') != -1}">
                     <label>First Name</label>
-                    <input type='text' v-model="contact.first_name" >
+                    <input type='text' v-model="contact.first_name" @input='validateForm'>
                 </div>
-                <div class='field'>
+                <div class='field' :class="{error: this.error.indexOf('lastName') != -1}">
                     <label>Last Name</label>
-                    <input type='text' v-model="contact.last_name" >
+                    <input type='text' v-model="contact.last_name" @input='validateForm'>
                 </div>
-                <div class='field'>
+                <div class='field' :class="{error: this.error.indexOf('number') != -1}">
                     <label>Phone Number</label>
-                    <input type='text' v-model="contact.number" >
+                    <input type='text' v-model="contact.number" @input='validateForm'>
                 </div>
                 <div class='ui attached buttons'>
                     <button class='ui green button' v-on:click="updateEntry(contact)">
@@ -53,20 +53,49 @@ export default {
     data(){
         return{
             cached : {},
+            error: [],
             isEditing: false,
         }
     },
     methods:{
+        validateForm(){
+            this.error = []
+            
+            let nameRe = /^[a-zA-Z ]*$/
+            let numberRe = /^[0-9 \- ]*$/
+
+            if(this.contact.first_name.length >0 && !nameRe.test(this.contact.first_name)){
+                this.error.push('firstName')
+            }
+
+            if(this.contact.last_name.length > 0 && !nameRe.test(this.contact.last_name)){
+                this.error.push('lastName')
+            }
+
+            if(this.contact.number.length > 0 && !numberRe.test(this.contact.number)){
+                this.error.push('number')
+            }
+
+            if(this.error.length != 0){
+                return false
+            }
+            this.error = []
+            return true
+        },
         deleteEntry(x){
             this.$emit('delete-entry', x)
         },
         updateEntry(x){
+            if(this.error.lengh != 0){
+                return false
+            }
             this.$emit('update-entry', x)
             this.toggleForm()
         },
         cancelEdit(x){
             Object.assign(x, this.cached)
             this.isEditing = !this.isEditing
+            this.error = []
         },
         toggleForm(x){
             this.cached = Object.assign({}, x)
