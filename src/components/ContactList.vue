@@ -1,7 +1,7 @@
 <template>
     <div>
         <contact-entry 
-        v-for="(contact, index) in contacts" 
+        v-for="(contact, index) in contacts"
         :key="index" 
         :contact="contact" 
         @delete-entry="deleteEntry(contact)"
@@ -22,6 +22,19 @@ export default {
     components:{
         AddNewEntry,
         ContactEntry,
+    },
+    data(){
+        return{
+            entries: [],
+        }
+    },
+    computed:{
+        home(){
+            return this.contacts.filter( (x) => x.category == 'Home')
+        },
+        work(){
+            return this.contacts.filter( x => x.category == 'Work')
+        }
     },
     methods:{
         deleteEntry(x){

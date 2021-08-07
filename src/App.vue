@@ -42,6 +42,11 @@ export default {
       ]
     }
   },
+  computed:{
+    filtered: (hash) => {
+      return this.contacts.filter( (x) => x.category == hash )
+    }
+  },
   mounted(){
     if(localStorage.getItem('contacts')){
       try{
