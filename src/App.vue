@@ -15,7 +15,7 @@ export default {
   data(){
     return{
       contacts:[
-        {
+        { //default data kad nemamo nista u storage
           first_name: 'Herp',
           last_name: 'Derp',
           number: '065-65505544',
