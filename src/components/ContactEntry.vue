@@ -1,5 +1,5 @@
 <template>
-    <div class="ui centered card">
+    <div class="ui centered card" v-if='contact.category == filter || filter == "/"'>
         <div class='content'>
             <div class='header'>
                 {{contact.first_name}} {{contact.last_name}}
@@ -51,7 +51,7 @@
 
 <script>
 export default {
-    props:['contact'],
+    props:['contact', 'filter'],
     data(){
         return{
             cached : {},
@@ -88,7 +88,7 @@ export default {
             this.$emit('delete-entry', x)
         },
         updateEntry(x){
-            if(this.error.lengh != 0){
+            if(this.error.length != 0){
                 return false
             }
             this.$emit('update-entry', x)
