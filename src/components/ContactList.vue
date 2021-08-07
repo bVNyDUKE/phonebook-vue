@@ -1,9 +1,17 @@
 <template>
-    <div>
+    <div class="ui container">
+        <div class="center aligned navigation"> 
+            <div class="ui three item menu">
+                <a class="item" :class="{active: filter == '/'}" @click="setFilter('/')">All</a>
+                <a class="item" :class="{active: filter == 'Work'}" @click="setFilter('Work')">Work</a>
+                <a class="item" :class="{active: filter == 'Home'}" @click="setFilter('Home')">Home</a>
+            </div>
+        </div>
         <contact-entry 
         v-for="(contact, index) in contacts"
         :key="index" 
-        :contact="contact" 
+        :contact="contact"
+        :filter="filter"
         @delete-entry="deleteEntry(contact)"
         @update-entry="updateEntry(contact)">
         </contact-entry>
@@ -25,15 +33,7 @@ export default {
     },
     data(){
         return{
-            entries: [],
-        }
-    },
-    computed:{
-        home(){
-            return this.contacts.filter( (x) => x.category == 'Home')
-        },
-        work(){
-            return this.contacts.filter( x => x.category == 'Work')
+            filter:'/',
         }
     },
     methods:{
@@ -54,11 +54,17 @@ export default {
         saveContacts(){
             const parsed = JSON.stringify(this.contacts)
             localStorage.setItem('contacts', parsed)
+        },
+        setFilter(x){
+            this.filter = x
         }
     }
 }
 </script>
 
 <style>
-
+.navigation{
+    max-width: 300px;
+    margin: auto;
+}
 </style>
