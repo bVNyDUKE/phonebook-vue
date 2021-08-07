@@ -20,16 +20,16 @@
                         <input type='text' v-model="number" @input="validateForm" >
                     </div>
                     <div class='inline fields'>
-                            <div class="ui radio checkbox">
-                                <input type='radio' name='category' value='Home' checked='checked' v-model="category">
+                            <div class="ui radio">
+                                <input type='radio' name='category' value='Home' v-model="category">
                                 <label>Home <i class="home icon"></i></label>
                             </div>
-                            <div class="ui radio checkbox">
+                            <div class="ui radio">
                                 <input type='radio' name='category' value='Work' v-model="category">
                                 <label>Work <i class="building icon"></i></label>
                             </div>
                     </div>
-                    <div class='ui buttons'>
+                    <div class='ui buttons attached'>
                         <button class='ui blue button' v-on:click="sendForm">
                             Create
                         </button>
@@ -50,7 +50,7 @@ export default {
             firstName: '',
             lastName: '',
             number: '',
-            category: 0,
+            category: 'Home',
             isCreating: false,
             error: [],
         }
