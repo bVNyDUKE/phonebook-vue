@@ -31,9 +31,12 @@
                     <label>Last Name</label>
                     <input type='text' v-model="contact.last_name" >
                 </div>
-                <div class='ui two button attached buttons'>
-                    <button class='ui basic blue button' v-on:click="toggleForm()">
-                        Close X
+                <div class='ui two button buttons'>
+                    <button class='ui basic green button' v-on:click="toggleForm()">
+                        Save
+                    </button>
+                    <button class='ui basic red button' v-on:click="toggleForm()">
+                        Close
                     </button>
                 </div>
             </div>

@@ -43,13 +43,12 @@ export default {
     }
   },
   mounted(){
-    if(localStorage.contacts){
-      this.contacts = localStorage.contacts
-    }
-  },
-  watch: {
-    contacts(newContacts) {
-      localStorage.contacts = newContacts
+    if(localStorage.getItem('contacts')){
+      try{
+        this.contacts = JSON.parse(localStorage.getItem('contacts'))
+      } catch(e){
+        localStorage.removeItem('contacts')
+      }
     }
   }
 }

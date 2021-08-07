@@ -16,13 +16,24 @@ export default {
         ContactEntry,
     },
     methods:{
-        deleteEntry(entry){
-            const contactIndex = this.contacts.indexOf(entry)
-            this.contacts.splice(contactIndex, 1)
+        deleteEntry(x){
+            const index = this.contacts.indexOf(x)
+            this.contacts.splice(index, 1)
+            this.saveContacts()
         },
-        addEntry(entry){
-            this.contacts.push(entry)
+        addEntry(x){
+            this.contacts.push(x)
+            this.saveContacts()
         },
+        updateEntry(x){
+            const index = this.contacts.indexOf(x)
+            this.contacts[index] = x
+            this.saveContacts()
+        },
+        saveContacts(){
+            const parsed = JSON.stringify(this.contacts)
+            localStorage.setItem('contacts', parsed)
+        }
     }
 }
 </script>
