@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <contact-list v-bind:contacts="contacts"></contact-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ContactList from './components/ContactList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ContactList,
+  },
+  data(){
+    return{
+      contacts:[
+        {
+          first_name: 'Herp',
+          last_name: 'Derp',
+          number: '065-65505544',
+          category: 'Work',
+        },
+        {
+          first_name: 'Smor',
+          last_name: 'Duur',
+          number: '065-65505544',
+          category: 'Home',
+        },
+        {
+          first_name: 'Todo',
+          last_name: 'Todoovic',
+          number: '065-65505544',
+          category: 'Work',
+        },
+        {
+          first_name: 'Kek',
+          last_name: 'Bur',
+          number: '065-65505544',
+          category: 'Home',
+        },
+      ]
+    }
+  },
+  mounted(){
+    if(localStorage.contacts){
+      this.contacts = localStorage.contacts
+    }
+  },
+  watch: {
+    contacts(newContacts) {
+      localStorage.contacts = newContacts
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#app{
+  margin-top: 50px;
 }
+
 </style>

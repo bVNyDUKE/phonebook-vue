@@ -1,4 +1,4 @@
-# phonebook
+# todo
 
 ## Project setup
 ```
