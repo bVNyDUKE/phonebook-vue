@@ -9,15 +9,15 @@
                 <div class='ui form'>
                     <div class='field' :class="{error: this.error.indexOf('firstName') != -1}" >
                         <label>First Name</label>
-                        <input type='text' v-model="firstName" @change="validateForm">
+                        <input type='text' v-model="firstName" @input="validateForm">
                     </div>
                     <div class='field' :class="{error: this.error.indexOf('lastName') != -1}">
                         <label>Last Name</label>
-                        <input type='text' v-model="lastName" @change="validateForm" >
+                        <input type='text' v-model="lastName" @input="validateForm" >
                     </div>
                     <div class='field' :class="{error: this.error.indexOf('number') != -1}">
                         <label>Phone Number</label>
-                        <input type='text' v-model="number" @change="validateForm" >
+                        <input type='text' v-model="number" @input="validateForm" >
                     </div>
                     <div class='inline fields'>
                             <div class="ui radio checkbox">
@@ -97,8 +97,8 @@ export default {
                 })
                 this.firstName = ''
                 this.lastName = ''
-                }
                 this.toggleForm()
+                }
             }
            
         }

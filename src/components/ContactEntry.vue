@@ -5,14 +5,13 @@
                 {{contact.first_name}} {{contact.last_name}}
                 <span class='right floated icon'>
                     <i class='icon outline' :class="{building: contact.category == 'Work', home: contact.category == 'Home'}"></i>
-                    <!-- Cisto da prikazemo dinamicko dodavanje klasa -->
                 </span>
             </div> 
             <div class='meta'>
                 {{ contact.number }}
             </div>
             <div class='extra content'>
-                <span class='right floated edit icon' v-on:click="toggleForm()">
+                <span class='right floated edit icon' v-on:click="toggleForm(contact)">
                     <i class='edit icon'></i>
                 </span>
                 <span class='right floated trash icon' v-on:click="deleteEntry(contact)">
@@ -31,11 +30,15 @@
                     <label>Last Name</label>
                     <input type='text' v-model="contact.last_name" >
                 </div>
-                <div class='ui two button buttons'>
-                    <button class='ui basic green button' v-on:click="toggleForm()">
+                <div class='field'>
+                    <label>Phone Number</label>
+                    <input type='text' v-model="contact.number" >
+                </div>
+                <div class='ui attached buttons'>
+                    <button class='ui green button' v-on:click="updateEntry(contact)">
                         Save
                     </button>
-                    <button class='ui basic red button' v-on:click="toggleForm()">
+                    <button class='ui red button' v-on:click="cancelEdit(contact)">
                         Close
                     </button>
                 </div>
@@ -49,15 +52,25 @@ export default {
     props:['contact'],
     data(){
         return{
+            cached : {},
             isEditing: false,
         }
     },
     methods:{
-        toggleForm(){
+        deleteEntry(x){
+            this.$emit('delete-entry', x)
+        },
+        updateEntry(x){
+            this.$emit('update-entry', x)
+            this.toggleForm()
+        },
+        cancelEdit(x){
+            Object.assign(x, this.cached)
             this.isEditing = !this.isEditing
         },
-        deleteEntry(contact){
-            this.$emit('delete-entry', contact)
+        toggleForm(x){
+            this.cached = Object.assign({}, x)
+            this.isEditing = !this.isEditing
         },
     }
 }

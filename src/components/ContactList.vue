@@ -1,7 +1,15 @@
 <template>
     <div>
-        <contact-entry v-for="(contact, index) in contacts" :key="index" :contact="contact" @delete-entry="deleteEntry(contact)"></contact-entry>
-        <add-new-entry v-on:add-entry='addEntry'></add-new-entry>
+        <contact-entry 
+        v-for="(contact, index) in contacts" 
+        :key="index" 
+        :contact="contact" 
+        @delete-entry="deleteEntry(contact)"
+        @update-entry="updateEntry(contact)">
+        </contact-entry>
+        <add-new-entry 
+        v-on:add-entry='addEntry'>
+        </add-new-entry>
     </div>
 </template>
 
