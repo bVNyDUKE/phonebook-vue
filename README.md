@@ -1,7 +1,9 @@
 # Phonebook App
 
-Vue2 Phonebook App
+Vue2 Phonebook App 
+
 Early learning exercise
+
 Archived
 
 ## Project setup
